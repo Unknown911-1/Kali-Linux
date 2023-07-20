@@ -138,11 +138,8 @@ function check_dependencies() {
         if [ -e $PREFIX/bin/$i ]; then
             printf "${green}[*] ${i} is OK!\n"
         else
-            printf "Installing ${i}...\n"
-            ${PKGMAN} install -y $i || {
-                printf "${red}ERROR: Failed to install packages.\n Exiting.\n${reset}"
-            exit
-            }
+              printf "Installing ${i}...\n"
+            ${PKGMAN} install -y $i || 
         fi
     done
 }

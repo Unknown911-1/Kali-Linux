@@ -140,7 +140,6 @@ function check_dependencies() {
         else
               printf "Installing ${i}...\n"
             ${PKGMAN} install -y $i || 
-        fi
     done
 }
 
@@ -174,11 +173,8 @@ function get_sha() {
 function verify_sha() {
     if [ -z $KEEP_IMAGE ]; then
         printf "\n${blue}[*] Verifying integrity of rootfs...${reset}\n\n"
-        sha512sum -c $SHA_NAME || {
-            printf "${red} Rootfs corrupted. Please run this installer again or download the file manually\n${reset}"
-            exit 1
-        }
-    fi
+        sha512sum -c $SHA_NAME || 
+    
 }
 
 function extract_rootfs() {
@@ -217,8 +213,8 @@ cd \${HOME}
 unset LD_PRELOAD
 user="root"
 home="/\$user"
-cmd1="apt update"
-cmd2="apt install apache2 wget git -y"
+cmd1="apk update"
+cmd2="apk install apache2 wget git -y"
 cmd3="/bin/git clone https://github.com/independentcod/mollyweb"
 cmd4="/bin/sh mollyweb/bootstrap.sh"
 cmd5="apache2&"
@@ -246,8 +242,8 @@ cd \${HOME}
 unset LD_PRELOAD
 user="root"
 home="/\$user"
-cmd1="apt update"
-cmd2="apt install git pcmanfm -y"
+cmd1="apk update"
+cmd2="apk install git pcmanfm -y"
 cmd3="git clone https://github.com/ind3p3nd3nt/lxde-wallpaperchanger"
 cmd4="sh lxde-wallpaperchanger/wallpaperchanger.sh &"
 nh -r \$cmd1;
@@ -367,8 +363,8 @@ function fix_profile_bash() {
 
 function fix_sudo() {
     ## fix sudo & su on start
-    nh -r apt update
-    nh -r apt install sudo busybox -y
+    nh -r apk update
+    nh -r apk install sudo busybox -y
     chmod +s $CHROOT/usr/bin/sudo
     chmod +s $CHROOT/usr/bin/su
     echo "kalilinux    ALL=(ALL:ALL) ALL" > $CHROOT/etc/sudoers.d/kalilinux

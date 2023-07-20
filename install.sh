@@ -1,5 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash -e
 # This repository has been forked from https://www.kali.org/docs/nethunter/nethunter-rootless/
+
 # This script is to install NetHunter on other Linux devices than an Android, it will work on Ubuntu and Debian.
 # I am trying to make it work on CentOS but for some reason PRoot fails to execute anything
 VERSION=2020030908
@@ -140,7 +141,6 @@ function check_dependencies() {
         else
               printf "Installing ${i}...\n"
             ${PKGMAN} install -y $i || 
-    done
 }
 
 function get_rootfs() {

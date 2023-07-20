@@ -141,6 +141,8 @@ function check_dependencies() {
         else
               printf "Installing ${i}...\n"
             ${PKGMAN} install -y $i || 
+        fi
+    fi
 }
 
 function get_rootfs() {
